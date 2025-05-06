@@ -11,15 +11,15 @@ public class LoanApplication {
     @Id
     private String id;
 
-    private int age;
-    private int income;
-    private int loanAmount;
-    private int creditScore;
-    private int monthsEmployed;
-    private int numCreditLines;
-    private double interestRate;
-    private int loanTerm;
-    private double dtiRatio;
+    private Integer age;
+    private Integer income;
+    private Integer loanAmount;
+    private Integer creditScore;
+    private Integer monthsEmployed;
+    private Integer numCreditLines;
+    private Double interestRate;
+    private Integer loanTerm;
+    private Double dtiRatio;
 
     private String education;
     private String employmentType;
@@ -37,75 +37,75 @@ public class LoanApplication {
         this.id = id;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
-    public int getIncome() {
+    public Integer getIncome() {
         return income;
     }
 
-    public void setIncome(int income) {
+    public void setIncome(Integer income) {
         this.income = income;
     }
 
-    public int getLoanAmount() {
+    public Integer getLoanAmount() {
         return loanAmount;
     }
 
-    public void setLoanAmount(int loanAmount) {
+    public void setLoanAmount(Integer loanAmount) {
         this.loanAmount = loanAmount;
     }
 
-    public int getCreditScore() {
+    public Integer getCreditScore() {
         return creditScore;
     }
 
-    public void setCreditScore(int creditScore) {
+    public void setCreditScore(Integer creditScore) {
         this.creditScore = creditScore;
     }
 
-    public int getMonthsEmployed() {
+    public Integer getMonthsEmployed() {
         return monthsEmployed;
     }
 
-    public void setMonthsEmployed(int monthsEmployed) {
+    public void setMonthsEmployed(Integer monthsEmployed) {
         this.monthsEmployed = monthsEmployed;
     }
 
-    public int getNumCreditLines() {
+    public Integer getNumCreditLines() {
         return numCreditLines;
     }
 
-    public void setNumCreditLines(int numCreditLines) {
+    public void setNumCreditLines(Integer numCreditLines) {
         this.numCreditLines = numCreditLines;
     }
 
-    public double getInterestRate() {
+    public Double getInterestRate() {
         return interestRate;
     }
 
-    public void setInterestRate(double interestRate) {
+    public void setInterestRate(Double interestRate) {
         this.interestRate = interestRate;
     }
 
-    public int getLoanTerm() {
+    public Integer getLoanTerm() {
         return loanTerm;
     }
 
-    public void setLoanTerm(int loanTerm) {
+    public void setLoanTerm(Integer loanTerm) {
         this.loanTerm = loanTerm;
     }
 
-    public double getDtiRatio() {
+    public Double getDtiRatio() {
         return dtiRatio;
     }
 
-    public void setDtiRatio(double dtiRatio) {
+    public void setDtiRatio(Double dtiRatio) {
         this.dtiRatio = dtiRatio;
     }
 

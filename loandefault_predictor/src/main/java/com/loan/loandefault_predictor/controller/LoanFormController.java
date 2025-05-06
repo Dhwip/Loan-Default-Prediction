@@ -10,9 +10,12 @@ public class LoanFormController {
 
     @PostMapping("/predict")
     public PredictionResponse predictDefault(@RequestBody LoanApplication application) {
-        // Simple rule-based prediction for demo
         String prediction;
-        if (application.getCreditScore() < 600 || application.getDtiRatio() > 0.4) {
+        double dti = application.getDtiRatio();
+        int creditScore = application.getCreditScore();
+        if (dti > 0.5 || creditScore < 550) {
+            prediction = "High risk of default";
+        } else if (dti > 0.4 || creditScore < 600) {
             prediction = "Likely to default";
         } else {
             prediction = "Unlikely to default";

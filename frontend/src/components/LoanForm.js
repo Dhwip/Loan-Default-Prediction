@@ -3,48 +3,47 @@ import { submitLoanForm } from '../api';
 import './LoanForm.css';
 
 const dropdownFields = {
-  Education: ['High School', 'Bachelor', 'Master', 'PhD', 'Other'],
-  EmploymentType: ['Salaried', 'Self-Employed', 'Unemployed', 'Retired'],
-  MaritalStatus: ['Single', 'Married', 'Divorced', 'Widowed'],
-  HasMortgage: ['Yes', 'No'],
-  HasDependents: ['Yes', 'No'],
-  LoanPurpose: ['Home', 'Car', 'Education', 'Personal', 'Medical', 'Other'],
-  HasCoSigner: ['Yes', 'No'],
+  education: ['High School', 'Bachelor', 'Master', 'PhD', 'Other'],
+  employmentType: ['Salaried', 'Self-Employed', 'Unemployed', 'Retired'],
+  maritalStatus: ['Single', 'Married', 'Divorced', 'Widowed'],
+  hasMortgage: ['Yes', 'No'],
+  hasDependents: ['Yes', 'No'],
+  loanPurpose: ['Home', 'Car', 'Education', 'Personal', 'Medical', 'Other'],
+  hasCoSigner: ['Yes', 'No'],
 };
 
 const fieldGroups = [
   {
     title: 'Personal Information',
-    fields: ['Age', 'Education', 'EmploymentType', 'MaritalStatus', 'HasDependents'],
+    fields: ['age', 'education', 'employmentType', 'maritalStatus', 'hasDependents'],
   },
   {
     title: 'Financial Information',
-    fields: ['Income', 'CreditScore', 'MonthsEmployed', 'NumCreditLines', 'HasMortgage'],
+    fields: ['income', 'creditScore', 'monthsEmployed', 'numCreditLines', 'hasMortgage'],
   },
   {
     title: 'Loan Details',
-    fields: ['LoanAmount', 'InterestRate', 'LoanTerm', 'DTIRatio', 'LoanPurpose', 'HasCoSigner'],
+    fields: ['loanAmount', 'interestRate', 'loanTerm', 'loanPurpose', 'hasCoSigner'],
   },
 ];
 
 const LoanForm = () => {
   const [formData, setFormData] = useState({
-    Age: '',
-    Income: '',
-    LoanAmount: '',
-    CreditScore: '',
-    MonthsEmployed: '',
-    NumCreditLines: '',
-    InterestRate: '',
-    LoanTerm: '',
-    DTIRatio: '',
-    Education: '',
-    EmploymentType: '',
-    MaritalStatus: '',
-    HasMortgage: '',
-    HasDependents: '',
-    LoanPurpose: '',
-    HasCoSigner: '',
+    age: '',
+    income: '',
+    loanAmount: '',
+    creditScore: '',
+    monthsEmployed: '',
+    numCreditLines: '',
+    interestRate: '',
+    loanTerm: '',
+    education: '',
+    employmentType: '',
+    maritalStatus: '',
+    hasMortgage: '',
+    hasDependents: '',
+    loanPurpose: '',
+    hasCoSigner: '',
   });
 
   const [prediction, setPrediction] = useState(null);
@@ -62,8 +61,15 @@ const LoanForm = () => {
     e.preventDefault();
     setLoading(true);
     setPrediction(null);
+    let dtiRatio = '';
+    const income = parseFloat(formData.income);
+    const loanAmount = parseFloat(formData.loanAmount);
+    if (!isNaN(income) && income > 0 && !isNaN(loanAmount)) {
+      dtiRatio = loanAmount / income;
+    }
+    const dataToSend = { ...formData, dtiRatio };
     try {
-      const response = await submitLoanForm(formData);
+      const response = await submitLoanForm(dataToSend);
       setPrediction(response.data.prediction);
     } catch (error) {
       setPrediction('Error: Could not get prediction.');
