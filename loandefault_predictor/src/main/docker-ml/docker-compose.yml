@@ -1,0 +1,8 @@
+
+services:
+  loan-api:
+    build: .
+    container_name: loan_default_container
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
